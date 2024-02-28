@@ -1,1 +1,8 @@
 Explain the code execution based on the order of the messages logged in src/quiz/promise-2darray.txt.
+
+We call sum2DArray which creates a promise (done on the main thread)
+the promise runs on the event loop and setTimeout is then used make a new callback 
+for the summing of the array.
+In the meantime the second call of sum2DArray has been called by the main thread and has been rejected since
+a non array object was passed and there are no new callbacks within the promise.
+Lastly the first call will resolve.
